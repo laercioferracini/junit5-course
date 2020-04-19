@@ -1,5 +1,6 @@
 package br.com.ferracini.patientintake;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -10,6 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class ClinicCalendarShould {
+    ClinicCalendar calendar;
+
+    @BeforeEach
+    void beforeEach() {
+        calendar = new ClinicCalendar(LocalDate.now());
+    }
 
     @Test
     void allowEntryOfAnAppointment() {
@@ -49,7 +56,6 @@ class ClinicCalendarShould {
 
     @Test
     void returnCurrentDaysAppointments() {
-        ClinicCalendar calendar = new ClinicCalendar(LocalDate.now());
 
         calendar.addAppointment("Jim", "Weaver", "avery",
                 LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")).concat(" 8:00 am"));
@@ -58,7 +64,6 @@ class ClinicCalendarShould {
         calendar.addAppointment("Jim", "Weaver", "avery",
                 LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("MM/dd/yyyy")).concat(" 7:00 am"));
         assertEquals(2, calendar.getTodayAppointments().size());
-        
     }
 
 }
