@@ -3,10 +3,12 @@ package br.com.ferracini.patientintake;
 import java.time.LocalDateTime;
 
 public class PatientAppointment {
+
     private String patientFirstName;
     private String patientLastName;
     private LocalDateTime appointmentDateTime;
     private Doctor doctor;
+    private double apptBmi;
 
     public PatientAppointment(String patientFirstName, String patientLastName, LocalDateTime appointmentDateTime, Doctor doctor) {
         this.patientFirstName = patientFirstName;
@@ -29,5 +31,13 @@ public class PatientAppointment {
 
     public Doctor getDoctor() {
         return doctor;
+    }
+
+    public void setBmi(double bmi) {
+        apptBmi = bmi;
+    }
+
+    public double getApptBmi() {
+        return apptBmi;
     }
 }
