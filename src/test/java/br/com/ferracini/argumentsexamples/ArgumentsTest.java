@@ -1,4 +1,4 @@
-package br.com.ferracini.patientintake;
+package br.com.ferracini.argumentsexamples;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.aggregator.AggregateWith;
@@ -43,6 +43,29 @@ public class ArgumentsTest {
             "John, Doe, M, 1990-10-22"
     })
     void testWithArgumentsAggregator(@AggregateWith(PersonAggregator.class) Person person) {
-        // perform assertions against person
+        if (person.getFirstName().equals("Jane")) {
+            assertEquals(Gender.F, person.getGender());
+        }
+        else {
+            assertEquals(Gender.M, person.getGender());
+        }
+        assertEquals("Doe", person.getLastName());
+        assertEquals(1990, person.getDateOfBirth().getYear());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "Jane, Doe, F, 1990-05-20",
+            "John, Doe, M, 1990-10-22"
+    })
+    void testWithCustomAggregatorAnnotation(@CsvToPerson Person person) {
+        if (person.getFirstName().equals("Jane")) {
+            assertEquals(Gender.F, person.getGender());
+        }
+        else {
+            assertEquals(Gender.M, person.getGender());
+        }
+        assertEquals("Doe", person.getLastName());
+        assertEquals(1990, person.getDateOfBirth().getYear());
     }
 }

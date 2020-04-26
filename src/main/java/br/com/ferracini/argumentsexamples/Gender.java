@@ -1,4 +1,4 @@
-package br.com.ferracini.patientintake;
+package br.com.ferracini.argumentsexamples;
 
 /**
  * @author lferracini
